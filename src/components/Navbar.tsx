@@ -5,6 +5,7 @@ import { LogOut } from "lucide-react";
 import { ModeToggle } from "./ModeToggle";
 import { buttonVariants } from "./ui/button";
 import Link from "next/link";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 interface RouteProps {
 	href: string;
@@ -28,7 +29,7 @@ const routeList: RouteProps[] = [
 
 export const Navbar = () => {
 	const isSubscribed = true;
-	const isAuthenticated = true;
+	const  {isAuthenticated} = useKindeBrowserClient()
 	return (
 		<header
 			className='sticky border-b-[1px] top-0 z-40 w-full  dark:border-b-slate-700 overflow-x-hidden
