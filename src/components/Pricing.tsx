@@ -18,6 +18,7 @@ interface PricingProps {
 	benefitList: string[];
 	href: string;
 	billing: string;
+	paymentLink?: string
 }
 
 const pricingList: PricingProps[] = [
@@ -40,6 +41,7 @@ const pricingList: PricingProps[] = [
 		benefitList: ["4 Team member", "4 GB Storage", "Upto 6 pages", "Priority support", "lorem ipsum dolor"],
 		href: "/api/auth/login",
 		billing: "/month",
+		paymentLink: process.env.STRIPE_MONTHLY_PLAN_LINK
 	},
 	{
 		title: "Enterprise",
@@ -50,6 +52,7 @@ const pricingList: PricingProps[] = [
 		benefitList: ["10 Team member", "8 GB Storage", "Upto 10 pages", "Priority support", "lorem ipsum dolor"],
 		href: "/api/auth/login",
 		billing: "/year",
+		paymentLink: process.env.STRIPE_YEARLY_PLAN_LINK
 	},
 ];
 
@@ -95,7 +98,7 @@ export const Pricing = () => {
 						</CardHeader>
 
 						<CardContent>
-							<Link href={pricing.href} className={buttonVariants()}>
+							<Link href={pricing.paymentLink || pricing.href} className={buttonVariants()}>
 								{pricing.buttonText}
 							</Link>
 						</CardContent>
